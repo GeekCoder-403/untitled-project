@@ -30,6 +30,9 @@ export default function AccountMenu() {
                         <Avatar />
                     </IconButton>
                 </Tooltip>
+                <Typography variant="body1" sx={{ ml: 1 }} color="text.secondary">
+                    Raj Kumar
+                </Typography>
             </Box>
             <Menu
                 anchorEl={anchorEl}
