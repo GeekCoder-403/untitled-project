@@ -1,5 +1,4 @@
 import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
-import { CirclePlus, LogOut, PersonStandingIcon, Settings } from "lucide-react";
 import React from "react";
 
 
@@ -77,19 +76,19 @@ export default function AccountMenu() {
                 <Divider />
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>
-                        <CirclePlus />
+                        <img src="/icons/CirclePlus.svg" alt="Loading..." />
                     </ListItemIcon>
                     Add another account
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>
-                        <Settings />
+                        <img src="/icons/Settings.svg" alt="Loading..." />
                     </ListItemIcon>
                     Settings
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>
-                        <LogOut />
+                        <img src="/icons/Logout.svg" alt="Loading..." />
                     </ListItemIcon>
                     Logout
                 </MenuItem>
