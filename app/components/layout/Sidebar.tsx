@@ -17,13 +17,13 @@ const iconMap: Record<string, string> = {
     "Management": "/icons/Management.svg",
 };
 const navItems = [
-    { to: "/home-admin", label: "Home" },
-    { to: "/connection", label: "Connection" },
-    { to: "/meta-data", label: "Meta Data" },
-    { to: "/business-grocery", label: "Business Grocery" },
-    { to: "/lineage", label: "Lineage" },
-    { to: "/data-product", label: "Data Product" },
-    { to: "/management", label: "Management" }
+    { to: "/admin/home-admin", label: "Home" },
+    { to: "/admin/connection", label: "Connection" },
+    { to: "/admin/meta-data", label: "Meta Data" },
+    { to: "/admin/business-grocery", label: "Business Grocery" },
+    { to: "/admin/lineage", label: "Lineage" },
+    { to: "/admin/data-product", label: "Data Product" },
+    { to: "/admin/management", label: "Management" }
 ];
 
 export default function Sidebar() {

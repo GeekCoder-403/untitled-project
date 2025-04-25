@@ -1,8 +1,11 @@
 import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
 import React from "react";
 
+type AvatarProps = {
+    name?: string;
+};
 
-export default function AccountMenu() {
+export default function AccountMenu({ name }: AvatarProps) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -30,7 +33,7 @@ export default function AccountMenu() {
                     </IconButton>
                 </Tooltip>
                 <Typography variant="body1" sx={{ ml: 1 }} color="text.secondary">
-                    Raj Kumar
+                    {name}
                 </Typography>
             </Box>
             <Menu
@@ -71,7 +74,7 @@ export default function AccountMenu() {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem onClick={handleClose}>
-                    <Avatar sx={{ width: 32, height: 32, padding: 3 }}>RK</Avatar> <span className="font-semibold">Raj Kumar</span>
+                    <Avatar sx={{ width: 32, height: 32, padding: 3 }}>RK</Avatar> <span className="font-semibold"> {name}</span>
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>
