@@ -1,11 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "@remix-run/react";
-import { Box, IconButton, Tooltip } from "@mui/material";
+import { Box, Tooltip } from "@mui/material";
 import clsx from "clsx";
-import {
-    ChevronRight,
-    ChevronLeft
-} from "lucide-react";
 
 const iconMap: Record<string, string> = {
     "Home": "/icons/Home.svg",
@@ -16,6 +12,7 @@ const iconMap: Record<string, string> = {
     "Data Product": "/icons/DataProduct.svg",
     "Management": "/icons/Management.svg",
 };
+
 const navItems = [
     { to: "/admin/home-admin", label: "Home" },
     { to: "/admin/connection", label: "Connection" },
@@ -28,52 +25,109 @@ const navItems = [
 
 export default function Sidebar() {
     const [expanded, setExpanded] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 1168);
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const handleToggle = () => {
+        setExpanded((prev) => !prev);
+    };
+
+    const handleNavClick = () => {
+        if (isMobile) {
+            setExpanded(false);
+        }
+    };
 
     return (
-        <Box
-            className={clsx(
-                "relative bg-gray-50 flex flex-col justify-between transition-all duration-300 ease-in-out shadow-lg p-4",
-                expanded ? "w-[18%]" : "w-[7%]"
-            )}
-        >
-            <div className="flex flex-col items-center gap-4">
-                {navItems.map(({ to, label }) => (
-                    <NavLink
-                        key={to}
-                        to={to}
-                        className={({ isActive }) =>
-                            clsx(
-                                "flex items-center w-full px-4 py-3 gap-3 rounded-lg transition-colors duration-200",
-                                isActive ? "bg-[#85bec3] text-black" : "text-gray-600 hover:bg-gray-100",
-                                expanded ? "justify-start" : "justify-center"
-                            )
-                        }
-                    >
-                        {!expanded ? (
-                            <Tooltip title={label} arrow>
+        <>
+            <Box
+                className={clsx(
+                    "bg-gray-50 flex flex-col justify-between transition-all duration-300 ease-in-out shadow-lg p-4 z-40",
+                    isMobile
+                        ? "fixed top-[5.2rem] left-0 h-full"
+                        : "relative h-full",
+                    isMobile
+                        ? expanded
+                            ? "sm:w-[30%] translate-x-0"
+                            : "w-0 -translate-x-full"
+                        : expanded
+                            ? "w-[18%]"
+                            : "w-[7%]"
+                )}
+                style={{ transition: "all 0.3s ease-in-out" }}
+            >
+                <div className="flex flex-col items-center gap-4 overflow-y-auto">
+                    {navItems.map(({ to, label }) => (
+                        <NavLink
+                            key={to}
+                            to={to}
+                            onClick={handleNavClick}
+                            className={({ isActive }) =>
+                                clsx(
+                                    "flex items-center w-full sm:px-4 sm:py-3 px-2 py-2 gap-1 rounded-lg transition-colors duration-200",
+                                    isActive ? "bg-[#85bec3] text-black" : "text-gray-600 hover:bg-gray-100",
+                                    expanded ? "justify-start" : "justify-center"
+                                )
+                            }
+                        >
+                            <Tooltip title={label} arrow disableHoverListener={expanded}>
                                 <div className="flex flex-col items-center">
-                                    <img src={iconMap[label]} alt="Loading..." />
+                                    <img
+                                        src={iconMap[label]}
+                                        alt={label}
+                                        className="w-5 h-5 sm:w-6 sm:h-6"
+                                    />
                                 </div>
                             </Tooltip>
-                        ) : (
-                            <div className="flex flex-col items-center">
-                                <img src={iconMap[label]} alt="Loading..." />
-                            </div>
-                        )}
-                        {expanded && <span className="text-sm font-medium">{label}</span>}
-                    </NavLink>
-                ))}
-            </div>
+                            {expanded && (
+                                <span className="text-[0.8rem] sm:text-xs md:text-sm font-medium">
+                                    {label}
+                                </span>
+                            )}
+                        </NavLink>
+                    ))}
+                </div>
 
-            <div
-                onClick={() => setExpanded(!expanded)}
-                className={clsx(
-                    "absolute right-0 bottom-6 z-50",
-                    "p-2 rounded-full bg-gray-100 hover:bg-gray-300 text-gray-500 transition-colors duration-200  shadow-md"
+                {!isMobile && (
+                    <div
+                        onClick={handleToggle}
+                        className={clsx(
+                            "absolute right-0 bottom-6 z-50",
+                            "p-2 rounded-full bg-gray-100 hover:bg-gray-300 text-gray-500 transition-colors duration-200 shadow-md cursor-pointer"
+                        )}
+                    >
+                        {expanded ? (
+                            <img src="/icons/ChevronLeft.svg" alt="Collapse" />
+                        ) : (
+                            <img src="/icons/ChevronRight.svg" alt="Expand" />
+                        )}
+                    </div>
                 )}
-            >
-                {expanded ? <img src="/icons/ChevronLeft.svg" alt="Loading..." /> : <img src="/icons/ChevronRight.svg" alt="Loading..." />}
-            </div>
-        </Box>
+            </Box>
+
+            {isMobile && (
+                <div
+                    onClick={handleToggle}
+                    className={clsx(
+                        "fixed bottom-6 left-6 z-50",
+                        "p-2 rounded-full bg-gray-100 hover:bg-gray-300 text-gray-500 transition-colors duration-200 shadow-md cursor-pointer"
+                    )}
+                >
+                    {expanded ? (
+                        <img src="/icons/ChevronLeft.svg" alt="Collapse" />
+                    ) : (
+                        <img src="/icons/ChevronRight.svg" alt="Expand" />
+                    )}
+                </div>
+            )}
+        </>
     );
 }

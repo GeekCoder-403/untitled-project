@@ -34,6 +34,7 @@ const cardData = [
         description: "Data mapping to interconnect your systems in an intuitive & automated way.",
         image: "/icons/Map.svg",
     },
+
 ];
 
 const route = () => (

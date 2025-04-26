@@ -10,7 +10,7 @@ export default function HomeLayout() {
             <div className="flex flex-1 overflow-hidden">
                 <Sidebar />
                 <div className="flex-1 overflow-auto p-4 bg-gray-300 shadow-md">
-                    <div className=" w-full h-screen bg-white shadow-md rounded-md">
+                    <div className=" w-full min-h-screen bg-white shadow-md rounded-md">
                         <Outlet />
                     </div>
                 </div>
