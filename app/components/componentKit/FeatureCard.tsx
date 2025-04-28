@@ -28,7 +28,6 @@ const FeatureCard = ({ title, subTitle, description, image }: FeatureCardProps) 
                 },
             }}
         >
-            {/* Top Short Line */}
             <Box
                 sx={{
                     position: "absolute",

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "@remix-run/react";
-import Avatar from "../componentKit/Avatar";
+import Avatar from "../elements/Avatar";
 import { useEffect, useState } from "react";
 
 
