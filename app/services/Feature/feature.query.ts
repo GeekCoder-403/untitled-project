@@ -8,7 +8,8 @@ export function getDetails(options?: Partial<UseQueryOptions<FeatureInterface, A
         queryKey: ["details"],
         queryFn: async () => {
             const response = await queryFetch<FeatureInterface>({
-                url: 'todos/1',
+                url: '/todos/1',
+                // baseURL: import.meta.env.URL_PLATFOR_API
             });
             return response;
         },

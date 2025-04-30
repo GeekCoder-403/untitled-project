@@ -3,8 +3,7 @@ import { mutationFetch } from "../../config/query-client";
 import { ApiError, MessageResult } from "~/utils/interfaceCollection/ClientTypeInterfaces";
 
 interface ExampleBody {
-    key1: string;
-    key2: string;
+    name: string;
 }
 
 export function postWithBodyExample(
@@ -13,12 +12,42 @@ export function postWithBodyExample(
     return useMutation<MessageResult, ApiError, ExampleBody>({
         mutationFn: async (body) => {
             return await mutationFetch({
-                url: "/path/to/endpoint",
+                url: "/objects",
                 method: "POST",
-                body: {
-                    key1: body.key1,
-                    key2: body.key2,
-                },
+                body: body,
+                baseURL: import.meta.env.URL_CREATE_API,
+            });
+        },
+        ...options,
+    });
+}
+
+export function updateWithBodyExample(
+    options?: UseMutationOptions<MessageResult, ApiError, ExampleBody>
+) {
+    return useMutation<MessageResult, ApiError, ExampleBody>({
+        mutationFn: async (body) => {
+            return await mutationFetch({
+                url: "/objects/ff808181932badb60196881412fb1b3a",
+                method: "PUT",
+                body: body,
+                baseURL: import.meta.env.URL_CREATE_API,
+            });
+        },
+        ...options,
+    });
+}
+
+export function deleteWithBodyExample(
+    options?: UseMutationOptions<MessageResult, ApiError, ExampleBody>
+) {
+    return useMutation<MessageResult, ApiError, ExampleBody>({
+        mutationFn: async (body) => {
+            return await mutationFetch({
+                url: "/objects/ff808181932badb60196881412fb1b3a",
+                method: "DELETE",
+                body: body,
+                baseURL: import.meta.env.URL_CREATE_API,
             });
         },
         ...options,

@@ -4,15 +4,17 @@ export interface QueryFetchOptions {
     url: string;
     inputParams?: any;
     token?: string
+    baseURL?: string;
+    createType?: "platform" | "create" | "vite";
 }
 
 export interface MutationFetchOptions {
     url: string;
-    method: MutationMethodType;
-    body?: any;
-    baseURL?: string;
+    method: string;
+    body: any;
+    baseURL?: string;  // Optional baseURL to override the default
+    createType?: "platform" | "create" | "vite";  // Custom createType to dynamically select baseURL
 }
-
 export interface MessageResult {
     status?: number;
     message: string;

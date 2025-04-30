@@ -23,12 +23,12 @@ const clientSideEmotionCache = createEmotionCache();
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient} >
       <CacheProvider value={clientSideEmotionCache}>
         <ThemeProvider theme={theme}>
           <RequestInterceptor />
           <ResponseInterceptor />
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           <CssBaseline />
           <Toaster />
           <Outlet />
