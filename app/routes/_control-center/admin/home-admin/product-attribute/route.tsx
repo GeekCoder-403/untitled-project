@@ -12,7 +12,7 @@ export const meta: MetaFunction = () => ([
 
 export default function FeaturePage() {
     const { data: devicesResponse, isLoading: devicesLoading, error: devicesError } = getDetails();
-
+    console.log(devicesResponse);
     if (devicesLoading) return <Box sx={{ padding: 2 }}>Loading...</Box>;
     if (devicesError) return <Box sx={{ padding: 2 }}>Error loading details.</Box>;
     const { title } = useParams();
@@ -20,15 +20,15 @@ export default function FeaturePage() {
     return (
         <Box sx={{ padding: 2 }}>
             <Typography variant="h4" className="text-gray-500 capitalize pb-2">
-                {title?.replace(/-/g, " ")}
+                Product Attribute
             </Typography>
-            <Box sx={{ border: '1px solid #ccc', borderRadius: 2, padding: 4, color: "#000000" }}>
+            {/* <Box sx={{ border: '1px solid #ccc', borderRadius: 2, padding: 4, color: "#000000" }}>
                 <h2>API Response Details</h2>
                 <p><strong>User ID:</strong> {devicesResponse?.userId}</p>
                 <p><strong>ID:</strong> {devicesResponse?.id}</p>
                 <p><strong>Title:</strong> {devicesResponse?.title}</p>
                 <p><strong>Completed:</strong> {devicesResponse?.completed ? "true" : "false"}</p>
-            </Box>
+            </Box> */}
             <DataTab />
             <DropdownWithTable />
             <TableWithChart />
