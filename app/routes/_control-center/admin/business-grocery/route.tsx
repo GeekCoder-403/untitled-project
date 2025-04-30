@@ -1,3 +1,10 @@
+import { MetaFunction } from "@remix-run/react";
+
+export const meta: MetaFunction = () => ([
+    { title: "Business Grocery" },
+    { name: "description", content: "Remix app development" },
+]);
+
 const route = () => {
     return (
         <>

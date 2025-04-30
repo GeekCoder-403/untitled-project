@@ -1,10 +1,11 @@
 import { Box, Grid2 } from "@mui/material";
-import { Link } from "@remix-run/react";
-import DataTab from "~/components/componentKit/DataTab";
-import DropdownWithTable from "~/components/componentKit/DropdownWithTable";
+import { Link, MetaFunction } from "@remix-run/react";
 import FeatureCard from "~/components/componentKit/FeatureCard";
-import TableWithChart from "~/components/componentKit/TableWithChart";
-import { getDetails } from "~/services/Feature/feature.query";
+
+export const meta: MetaFunction = () => ([
+    { title: "Home Admin" },
+    { name: "description", content: "Remix app development" },
+]);
 
 const cardData = [
     {
