@@ -41,15 +41,17 @@ const TableWithChart = () => {
                         Top 10 most accessed data product:
                     </h1>
 
-                    <CustomTabs
-                        tabs={tabs}
-                        value={activeTab}
-                        onChange={(_, newValue) => {
-                            if (newValue !== null) {
-                                setActiveTab(newValue);
-                            }
-                        }}
-                    />
+                    <Box >
+                        <CustomTabs
+                            tabs={tabs}
+                            value={activeTab}
+                            onChange={(_, newValue) => {
+                                if (newValue !== null) {
+                                    setActiveTab(newValue);
+                                }
+                            }}
+                        />
+                    </Box>
                 </Box>
 
                 <Box className="w-full">

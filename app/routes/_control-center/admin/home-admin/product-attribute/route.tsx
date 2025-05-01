@@ -4,15 +4,44 @@ import DataTab from "~/components/componentKit/DataTab";
 import DropdownWithTable from "~/components/componentKit/DropdownWithTable";
 import TableWithChart from "~/components/componentKit/TableWithChart";
 import { getDetails } from "~/services/Feature/feature.query";
+import DataPlatformCard from "~/components/componentKit/DataPlatformCard";
 
 export const meta: MetaFunction = () => ([
     { title: "Home | Product Attribute" },
     { name: "description", content: "Remix app development" },
 ]);
 
+const DataProducts = [
+    {
+        title: "Data Products",
+        DataContent: [
+            { title: "Total Data Products", value: 30 },
+            { title: "Total User Subscription", value: 151 }
+        ]
+    },
+    {
+        title: "Data Assets",
+        DataContent: [
+            { title: "Total Data Assets", value: 120 },
+            { title: "Total Data Sources", value: 54 }
+        ]
+    },
+    {
+        title: "Sources",
+        DataContent: [
+            { title: "Total Data Sources", value: 54 }
+        ]
+    },
+    {
+        title: "Visitors",
+        DataContent: [
+            { title: "Total Visitors", value: 1245287 }
+        ]
+    },
+]
+
 export default function FeaturePage() {
     const { data: devicesResponse, isLoading: devicesLoading, error: devicesError } = getDetails();
-    console.log(devicesResponse);
     if (devicesLoading) return <Box sx={{ padding: 2 }}>Loading...</Box>;
     if (devicesError) return <Box sx={{ padding: 2 }}>Error loading details.</Box>;
     const { title } = useParams();
@@ -30,6 +59,17 @@ export default function FeaturePage() {
                 <p><strong>Completed:</strong> {devicesResponse?.completed ? "true" : "false"}</p>
             </Box> */}
             <DataTab />
+            <Box sx={{ display: 'flex', marginBottom: 2, gap: 2, flexWrap: 'wrap' }}>
+                {
+                    DataProducts.map((item, index) => (
+                        <DataPlatformCard
+                            key={index}
+                            title={item.title}
+                            DataContent={item.DataContent}
+                        />
+                    ))
+                }
+            </Box>
             <DropdownWithTable />
             <TableWithChart />
         </Box>

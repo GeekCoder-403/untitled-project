@@ -20,7 +20,7 @@ const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, value, onChange, classNam
             onChange={onChange}
             className={`2xl:w-[30%] lg:w-[35%] md:w-[40%] w-full ${className}`}
         >
-            <TabsList className=" border border-gray-400 bg-white flex items-center justify-center content-between min-w-tabs-list shadow-lg">
+            <TabsList className="bg-white flex items-center justify-center content-between min-w-tabs-list">
                 {tabs.map((tab) => (
                     <Tab
                         key={tab.value}
@@ -31,7 +31,7 @@ const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, value, onChange, classNam
                                     font-sans 
                                     ${selected ? 'text-white bg-[#85bec3]' : 'text-[#85bec3] focus:text-white hover:bg-[#85bec3] hover:text-white'} 
                                     ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'} 
-                                    text-xs font-semibold w-full p-2 m-1 flex justify-center uppercase
+                                    text-xs text-nowrap font-semibold w-full py-2 px-6 m-1 flex justify-center uppercase rounded-sm
                                 `,
                             }),
                         }}
