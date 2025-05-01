@@ -59,16 +59,21 @@ export default function FeaturePage() {
                 <p><strong>Completed:</strong> {devicesResponse?.completed ? "true" : "false"}</p>
             </Box> */}
             <DataTab />
-            <Box sx={{ display: 'flex', marginBottom: 2, gap: 2, flexWrap: 'wrap' }}>
-                {
-                    DataProducts.map((item, index) => (
-                        <DataPlatformCard
-                            key={index}
-                            title={item.title}
-                            DataContent={item.DataContent}
-                        />
-                    ))
-                }
+            <Box>
+                <Typography variant="h5" className="text-black capitalize pb-2">
+                    Data Platforms
+                </Typography>
+                <Box sx={{ display: 'flex', marginBottom: 2, gap: 2, flexWrap: 'wrap' }}>
+                    {
+                        DataProducts.map((item, index) => (
+                            <DataPlatformCard
+                                key={index}
+                                title={item.title}
+                                DataContent={item.DataContent}
+                            />
+                        ))
+                    }
+                </Box>
             </Box>
             <DropdownWithTable />
             <TableWithChart />
