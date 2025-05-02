@@ -54,7 +54,7 @@ const ReusableTable: React.FC<ReusableTableProps> = ({ columns, rows, menuOption
                                     align={column.align}
                                     sx={{
                                         minWidth: column.minWidth,
-                                        backgroundColor: 'oklch(70.9% 0.01 56.259)',
+                                        backgroundColor: 'secondary.main',
                                         color: 'black',
                                         borderBottom: '1px solid #6b7280',
                                         borderRight: '1px solid #6b7280',
@@ -112,23 +112,6 @@ const ReusableTable: React.FC<ReusableTableProps> = ({ columns, rows, menuOption
                     variant="outlined"
                     shape="rounded"
                     color="primary"
-                    sx={{
-                        "& .MuiPaginationItem-root": {
-                            color: "#000",
-                            backgroundColor: "oklch(70.9% 0.01 56.259)",
-                            borderColor: "#ddd",
-                            "&:hover": {
-                                backgroundColor: "oklch(70.9% 0.01 56.259)",
-                            },
-                        },
-                        "& .Mui-selected": {
-                            backgroundColor: "#85bec3",
-                            borderColor: "#85bec3",
-                            "&:hover": {
-                                backgroundColor: "#85bec3",
-                            },
-                        },
-                    }}
                 />
             </Box>
 

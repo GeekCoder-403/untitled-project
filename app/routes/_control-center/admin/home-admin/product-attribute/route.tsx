@@ -48,7 +48,7 @@ export default function FeaturePage() {
 
     return (
         <Box sx={{ padding: 2 }}>
-            <Typography variant="h4" className="text-gray-500 capitalize pb-2">
+            <Typography variant="h4" className="text-tertiary capitalize pb-2">
                 Product Attribute
             </Typography>
             {/* <Box sx={{ border: '1px solid #ccc', borderRadius: 2, padding: 4, color: "#000000" }}>
@@ -60,7 +60,7 @@ export default function FeaturePage() {
             </Box> */}
             <DataTab />
             <Box>
-                <Typography variant="h5" className="text-black capitalize pb-2">
+                <Typography variant="h4" className="text-tertiary capitalize pb-2">
                     Data Platforms
                 </Typography>
                 <Box sx={{ display: 'flex', marginBottom: 2, gap: 2, flexWrap: 'wrap' }}>

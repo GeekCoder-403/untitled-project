@@ -28,29 +28,30 @@ const DataPlatformCard: React.FC<DataPlatformCardProps> = ({ title, DataContent 
             <CardHeader
                 title={title}
                 sx={{
-                    backgroundColor: '#f5f5f5',
+                    backgroundColor: 'secondary.main',
                     "& .MuiCardHeader-title": {
                         fontSize: '1.25rem',
                         fontWeight: 400,
+                        color: "black"
                     }
                 }}
             />
             <CardContent>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Box>
-                        <Typography variant="h5" component={"h5"} sx={{ fontWeight: "bold" }}>
+                        <Typography variant="h5" component={"h5"} sx={{ fontWeight: "bold", color: "tertiary.main" }}>
                             {DataContent[0]?.value}
                         </Typography>
-                        <Typography variant="body2" component={"p"}>
+                        <Typography variant="body2" component={"p"} sx={{ color: "tertiary.main" }}>
                             {DataContent[0]?.title}
                         </Typography>
                     </Box>
-                    {DataContent.length > 1 && <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: '#ccc' }} />}
+                    {DataContent.length > 1 && <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: 'tertiary.main' }} />}
                     <Box>
-                        <Typography variant="h5" component={"h5"} sx={{ fontWeight: "bold" }}>
+                        <Typography variant="h5" component={"h5"} sx={{ fontWeight: "bold", color: "tertiary.main" }}>
                             {DataContent[1]?.value}
                         </Typography>
-                        <Typography variant="body2" component={"p"}>
+                        <Typography variant="body2" component={"p"} sx={{ color: "tertiary.main" }}>
                             {DataContent[1]?.title}
                         </Typography>
                     </Box>

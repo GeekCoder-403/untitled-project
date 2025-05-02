@@ -1,12 +1,13 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./app/**/*.{js,jsx,ts,tsx}"], // Adjust to include only necessary directories
+  content: ["./app/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        primary: '#00a181',
-        secondary: '#10B981',
+        primary: '#85bec3',
+        secondary: '#a1a1a1',
+        tertiary: '#6b7280',
         'bg-primary': '#141414',
         'bg-secondary': '#0f0f0f',
       },

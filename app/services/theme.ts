@@ -19,31 +19,35 @@ declare module "@mui/material/styles" {
 const getPalette = (mode: PaletteMode) => ({
     mode,
     primary: {
-        main: "#00a181", // Brand green
+        main: "#85bec3",
         contrastText: "#ffffff",
     },
     secondary: {
-        main: "#dc004e", // Action red
+        main: "#a1a1a1",
+        contrastText: "#ffffff",
+    },
+    tertiary: {
+        main: "#6b7280",
         contrastText: "#ffffff",
     },
     error: {
-        main: "#f44336", // Error red
+        main: "#f44336",
         contrastText: "#ffffff",
     },
     warning: {
-        main: "#ff9800", // Warning amber
+        main: "#ff9800",
         contrastText: "#ffffff",
     },
     info: {
-        main: "#2196f3", // Information blue
+        main: "#2196f3",
         contrastText: "#ffffff",
     },
     success: {
-        main: "#4caf50", // Success green
+        main: "#4caf50",
         contrastText: "#ffffff",
     },
     neutral: {
-        main: mode === "dark" ? "#6e6e6e" : "#8c8c8c", // Neutral grey
+        main: mode === "dark" ? "#6e6e6e" : "#8c8c8c",
         contrastText: "#ffffff",
     },
     text: {
@@ -61,11 +65,10 @@ const getPalette = (mode: PaletteMode) => ({
     },
 });
 
-// Integrate Google Fonts in Typography
 const theme = createTheme({
     palette: getPalette("dark"),
     typography: {
-        fontFamily: `"Inter", "Roboto", "Poppins", Arial, sans-serif`, // Priority order
+        fontFamily: `"Inter", "Roboto", "Poppins", Arial, sans-serif`,
         allVariants: {
             color: "#ffffff",
         },
@@ -73,7 +76,7 @@ const theme = createTheme({
             fontSize: "6rem",
             fontWeight: 700,
             lineHeight: 1.167,
-            fontFamily: `"Poppins", "Inter", "Roboto", Arial, sans-serif`, // Slight flair for headers
+            fontFamily: `"Poppins", "Inter", "Roboto", Arial, sans-serif`,
         },
         h2: {
             fontSize: "3.75rem",
@@ -90,7 +93,7 @@ const theme = createTheme({
             fontSize: "1rem",
             fontWeight: 400,
             lineHeight: 1.5,
-            fontFamily: `"Roboto", "Inter", "Poppins", Arial, sans-serif`, // Cleaner for body text
+            fontFamily: `"Roboto", "Inter", "Poppins", Arial, sans-serif`,
         },
         body2: {
             fontSize: "0.875rem",
@@ -101,137 +104,58 @@ const theme = createTheme({
         button: {
             fontWeight: 600,
             textTransform: "uppercase",
-            fontFamily: `"Inter", "Roboto", Arial, sans-serif`, // Bold, clear for buttons
+            fontFamily: `"Inter", "Roboto", Arial, sans-serif`,
         },
     },
     components: {
+        MuiButtonGroup: {
+            styleOverrides: {
+                root: {
+                    // Add global styles for ButtonGroup root
+                    '& .MuiButtonGroup-grouped': {
+                        minWidth: 90,
+                        borderRadius: 0,
+                        textTransform: 'none',
+                    },
+                    '& .MuiButtonGroup-grouped:not(:last-of-type)': {
+                        borderRightColor: 'divider',
+                    },
+                    '& .MuiButtonGroup-grouped:first-of-type': {
+                        borderTopLeftRadius: 2,
+                        borderBottomLeftRadius: 2,
+                    },
+                    '& .MuiButtonGroup-grouped:last-of-type': {
+                        borderTopRightRadius: 2,
+                        borderBottomRightRadius: 2,
+                    },
+                },
+            },
+        },
         MuiButton: {
             styleOverrides: {
                 root: {
-                    textTransform: "none",
                     fontWeight: 600,
-                    borderRadius: "8px",
-                    "&.Mui-uppercase": {
-                        textTransform: "uppercase",
-                    },
-                    "&.Mui-lowercase": {
-                        textTransform: "lowercase",
-                    },
-                    "&.Mui-capitalize": {
-                        textTransform: "capitalize",
-                    },
-                    "&.Mui-disabled": {
-                        backgroundColor: "#808080",
-                        color: "#ffffff",
-                    },
                 },
             },
-            variants: [
-                {
-                    props: { variant: "contained" },
-                    style: {
-                        backgroundColor: "#00a181",
-                        color: "#ffffff",
+        },
+        MuiPagination: {
+            styleOverrides: {
+                root: {
+                    "& .MuiPaginationItem-root": {
+                        color: "#000",
+                        backgroundColor: "tertiary.main",
+                        borderColor: "#ddd",
                         "&:hover": {
-                            backgroundColor: "#007f68",
+                            backgroundColor: "tertiary.main",
                         },
                     },
-                },
-                {
-                    props: { variant: "outlined" },
-                    style: {
-                        borderColor: "#00a181",
-                        color: "#00a181",
+                    "& .Mui-selected": {
+                        backgroundColor: "primary.main",
+                        borderColor: "primary.main",
                         "&:hover": {
-                            backgroundColor: "rgba(0, 161, 129, 0.1)",
+                            backgroundColor: "primary.main",
                         },
                     },
-                },
-                {
-                    props: { color: "inherit" },
-                    style: {
-                        backgroundColor: "#6e6e6e",
-                        color: "#ffffff",
-                    },
-                },
-            ],
-        },
-        MuiOutlinedInput: {
-            styleOverrides: {
-                root: {
-                    borderRadius: "8px",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "rgba(255, 255, 255, 0.8)",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#00a181",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#00a181",
-                    },
-                    "& .MuiInputBase-input": {
-                        color: "#ffffff",
-                    },
-                },
-            },
-        },
-        MuiInputLabel: {
-            styleOverrides: {
-                root: {
-                    color: "#a1a1a1",
-                    "&.Mui-focused": {
-                        color: "#00a181",
-                    },
-                },
-            },
-        },
-        MuiTabs: {
-            styleOverrides: {
-                root: {
-                    color: "#ffffff",
-                    minHeight: "48px",
-                },
-                indicator: {
-                    backgroundColor: "#00a181",
-                },
-            },
-        },
-        MuiTab: {
-            styleOverrides: {
-                root: {
-                    color: "#a1a1a1",
-                    textTransform: "capitalize",
-                    fontWeight: 500,
-                    "&.Mui-selected": {
-                        color: "#00a181",
-                        fontWeight: 600,
-                    },
-                },
-            },
-        },
-        MuiTypography: {
-            styleOverrides: {
-                root: {
-                    color: "inherit", // Use parent color by default
-                },
-            },
-        },
-        MuiPaper: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: "#1e1e1e",
-                    color: "#ffffff",
-                    padding: "16px",
-                    borderRadius: "8px",
-                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
-                },
-            },
-        },
-        MuiSvgIcon: {
-            styleOverrides: {
-                root: {
-                    color: "#ffffff", // Default icon color
-                    fontSize: "1.5rem", // Default icon size
                 },
             },
         },
