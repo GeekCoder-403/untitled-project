@@ -7,7 +7,7 @@ const iconMap: Record<string, string> = {
     "Home": "/icons/Home.svg",
     "Connection": "/icons/Connection1.svg",
     "Meta Data": "/icons/MetaData.svg",
-    "Business Grocery": "/icons/BusinessGrocery.svg",
+    "Business Glossary": "/icons/BusinessGlossary.svg",
     "Lineage": "/icons/Lineage.svg",
     "Data Product": "/icons/DataProduct.svg",
     "Management": "/icons/Management.svg",
@@ -17,7 +17,7 @@ const navItems = [
     { to: "/admin/home-admin", label: "Home" },
     { to: "/admin/connection", label: "Connection" },
     { to: "/admin/meta-data", label: "Meta Data" },
-    { to: "/admin/business-grocery", label: "Business Grocery" },
+    { to: "/admin/business-glossary", label: "Business Glossary" },
     { to: "/admin/lineage", label: "Lineage" },
     { to: "/admin/data-product", label: "Data Product" },
     { to: "/admin/management", label: "Management" }

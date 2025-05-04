@@ -36,8 +36,10 @@ const ReusableMenu: React.FC<ReusableMenuProps> = ({ options, onSelect }) => {
                 aria-haspopup="true"
                 onClick={handleClick}
                 sx={{
-                    padding: 0,
+                    padding: 0.1,
                     color: "#000000",
+                    borderRadius: 0,
+                    backgroundColor: "primary.main",
                 }}
             >
                 <EllipsisVertical />
@@ -74,7 +76,7 @@ const ReusableMenu: React.FC<ReusableMenuProps> = ({ options, onSelect }) => {
                             color: "#000000",
                             backgroundColor: "#ffffff",
                             '&:hover': {
-                                backgroundColor: "#85bec3",
+                                backgroundColor: "secondary.main",
                                 color: "#000000",
                             },
                         }}

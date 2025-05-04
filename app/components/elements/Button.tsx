@@ -41,7 +41,7 @@ const Button: React.FC<UIButtonProps> = ({
             disabled={loading || props.disabled}
             aria-busy={loading}
             aria-disabled={loading || props.disabled}
-            // sx={defaultStyles}
+            sx={defaultStyles}
             variant={variant} // Apply default and custom styles
             {...props}
         >
