@@ -3,7 +3,7 @@ import { CacheProvider } from "@emotion/react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Toaster } from "react-hot-toast";
 import { queryClient } from "./config/query-client";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { SnackbarProvider } from 'notistack';
 import { QueryClientProvider } from "@tanstack/react-query";
 import "./style/global.css";
 import {
@@ -26,16 +26,22 @@ export default function App() {
     <QueryClientProvider client={queryClient} >
       <CacheProvider value={clientSideEmotionCache}>
         <ThemeProvider theme={theme}>
-          <RequestInterceptor />
-          <ResponseInterceptor />
-          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-          <CssBaseline />
-          <Toaster />
-          <Outlet />
-          <Meta />
-          <Links />
-          <ScrollRestoration />
-          <Scripts />
+          <SnackbarProvider
+            maxSnack={5}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            autoHideDuration={3000}
+          >
+            <RequestInterceptor />
+            <ResponseInterceptor />
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+            <CssBaseline />
+            <Toaster />
+            <Outlet />
+            <Meta />
+            <Links />
+            <ScrollRestoration />
+            <Scripts />
+          </SnackbarProvider>
         </ThemeProvider>
       </CacheProvider>
     </QueryClientProvider>

@@ -4,11 +4,10 @@ export const meta: MetaFunction = () => ([
     { title: "Connection" },
     { name: "description", content: "Remix app development" },
 ]);
-
 const route = () => {
     return (
         <>
-            <h1 className='text-xl p-4 text-yellow-400'>Connection</h1>
+            <h1 className='text-xl p-4 text-red-400'>Connection</h1>
         </>
     )
 }

@@ -23,6 +23,10 @@ const getPalette = (mode: PaletteMode) => ({
         contrastText: "#ffffff",
     },
     secondary: {
+        main: "#e6fbf7",
+        contrastText: "#ffffff",
+    },
+    neutral: {
         main: "#a1a1a1",
         contrastText: "#ffffff",
     },
@@ -44,10 +48,6 @@ const getPalette = (mode: PaletteMode) => ({
     },
     success: {
         main: "#4caf50",
-        contrastText: "#ffffff",
-    },
-    neutral: {
-        main: mode === "dark" ? "#6e6e6e" : "#8c8c8c",
         contrastText: "#ffffff",
     },
     text: {

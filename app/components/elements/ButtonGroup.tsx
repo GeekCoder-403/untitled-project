@@ -54,6 +54,7 @@ export default function ReusableButtonGroup<T extends string>({
                         onClick={() => onChange(btn.value)}
                         disabled={btn.disabled}
                         sx={{
+                            border: 0,
                             backgroundColor: isSelected ? 'primary.main' : 'transparent',
                             color: isSelected ? 'white' : 'primary.main',
                             fontWeight: 600,

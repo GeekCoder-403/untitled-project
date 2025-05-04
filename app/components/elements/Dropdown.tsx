@@ -68,21 +68,21 @@ const Dropdown: React.FC<DropdownProps> = ({
                 displayEmpty
                 sx={{
                     borderRadius: 0,
-                    color: "#6b7280",
+                    color: "tertiary.main",
                     '& .MuiSelect-select': {
                         color: "#000000",
                     },
                     '.MuiOutlinedInput-notchedOutline': {
-                        borderColor: "#6b7280",
+                        borderColor: "tertiary.main",
                     },
                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: "#6b7280",
+                        borderColor: "tertiary.main",
                     },
                     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: "#6b7280",
+                        borderColor: "tertiary.main",
                     },
                     '.MuiSelect-icon': {
-                        color: "#6b7280",
+                        color: "tertiary.main",
                     },
                     textOverflow: "ellipsis",
                     overflow: "hidden",
@@ -101,19 +101,19 @@ const Dropdown: React.FC<DropdownProps> = ({
                     <MenuItem
                         value=""
                         sx={{
-                            color: "#6b7280",
+                            color: "tertiary.main",
                             backgroundColor: "#fff",
                             '&.Mui-selected': {
                                 color: "#000000",
-                                backgroundColor: "#85bec3",
+                                backgroundColor: "secondary.main",
                             },
                             '&.Mui-selected:hover': {
                                 color: "#000000",
-                                backgroundColor: "#85bec3",
+                                backgroundColor: "secondary.main",
                             },
                             '&:hover': {
                                 color: "#000000",
-                                backgroundColor: "#85bec3",
+                                backgroundColor: "secondary.main",
                             },
                         }}
                     >
@@ -125,19 +125,19 @@ const Dropdown: React.FC<DropdownProps> = ({
                         key={option.value}
                         value={option.value}
                         sx={{
-                            color: "#6b7280",
+                            color: "tertiary.main",
                             backgroundColor: "#ffffff",
                             '&.Mui-selected': {
                                 color: "#000000",
-                                backgroundColor: "#85bec3",
+                                backgroundColor: "secondary.main",
                             },
                             '&.Mui-selected:hover': {
                                 color: "#000000",
-                                backgroundColor: "#85bec3",
+                                backgroundColor: "secondary.main",
                             },
                             '&:hover': {
                                 color: "#000000",
-                                backgroundColor: "#85bec3",
+                                backgroundColor: "secondary.main",
                             },
                         }}
                     >

@@ -18,7 +18,7 @@ const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, value, onChange, classNam
         <Tabs
             value={value}
             onChange={onChange}
-            className={`2xl:w-[30%] lg:w-[35%] md:w-[40%] w-full border ${className}`}
+            className={`2xl:w-[30%] lg:w-[35%] md:w-[40%] w-full overflow-x-auto border ${className}`}
         >
             <TabsList className="flex items-center justify-center content-between min-w-tabs-list">
                 {tabs.map((tab) => (
