@@ -41,6 +41,73 @@ cp -R ../my-old-remix-app/app app
 Welcome! This guide helps you use our standardized API flow using **TanStack Query (React Query)** and `axios`.
 
 ---
+## API Flow - Step by Step (Query + Mutation)
+
+## For GET (Query) - Fetching Data
+
+1️⃣ Write a hook→ 
+   Create /services/businessGlossary.query.ts and write a GET hook using queryFetch.
+
+2️⃣ Create an interface→ 
+   Define your response model in /utils/interfaceCollection/businessGlossaryInterface.ts.
+
+3️⃣ Use the hook in your page→ 
+   Call useGetBusinessGlossary() inside your component to fetch data.
+
+4️⃣ Trigger API call→ 
+   When the component mounts, React Query runs the hook automatically.
+
+5️⃣ Build API request→ 
+   queryFetch builds the full URL and configures Axios for the GET request.
+
+6️⃣ Send request→ 
+   Axios sends the GET request to your backend API.
+
+7️⃣ Attach Access Token→ 
+   Axios interceptor automatically adds the token to request headers.
+
+8️⃣ Receive response→ 
+   API returns JSON data; Axios parses the result.
+
+9️⃣ Cache the result→ 
+   React Query caches the data using the ["businessGlossary"] query key.
+
+🔟 Render data in UI→ 
+   Your component displays the fetched data.
+
+## For POST/PUT/DELETE (Mutation) - Sending Data
+
+1️⃣ Write a hook→ 
+   Create /services/businessGlossary.mutation.ts and write a hook using mutationFetch.
+
+2️⃣ Create interfaces→ 
+   Define request + response models in /utils/interfaceCollection/businessGlossaryInterface.ts.
+
+3️⃣ Use the hook in your page→ 
+   Call useCreateBusinessGlossary() (or update/delete) inside your component.
+
+4️⃣ Trigger mutation→ 
+   Call mutate({...}) when the user performs an action (e.g., clicks "Add" or "Update").
+
+5️⃣ Build API request→ 
+   mutationFetch builds the URL, sets the method (POST/PUT/DELETE), and attaches the request body.
+
+6️⃣ Send request→ 
+   Axios sends the request to the API.
+
+7️⃣ Attach Access Token→ 
+   Axios interceptor adds the token to request headers.
+
+8️⃣ Handle response→ 
+   API responds (e.g., success message); Axios parses it.
+
+9️⃣ Update UI→ 
+   You can refresh data using queryClient.invalidateQueries() to refetch the latest data automatically.
+
+🔟 Show feedback→ 
+   Show success/error toast or message to the user.
+
+---
 
 ## 1. Set up your API URL
 
