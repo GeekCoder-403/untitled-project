@@ -23,9 +23,16 @@ interface Column {
     format?: (value: any) => string;
 }
 
+export interface data {
+    id: number;
+    term: string;
+    definition: string;
+    [key: string]: any;
+}
+
 interface ReusableTableProps {
     columns: Column[];
-    rows: any[];
+    rows: data[];
     menuOptions?: string[];
     handleSelect?: (option: string, row: any) => void;
     enableCheckbox?: boolean;

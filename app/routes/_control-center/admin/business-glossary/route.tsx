@@ -5,7 +5,7 @@ import { useState } from "react";
 import PageHeader from "~/components/componentKit/PageHeader";
 import Button from "~/components/elements/Button";
 import CustomDialog from "~/components/elements/Dialog";
-import ReusableTable from "~/components/elements/Table";
+import ReusableTable, { data } from "~/components/elements/Table";
 import LabeledTextField from "~/components/elements/TestField";
 
 export const meta: MetaFunction = () => ([
@@ -19,18 +19,7 @@ const route = () => {
     const [definition, setDefinition] = useState('');
 
     // ✅ Make rows a state
-    const [rows, setRows] = useState([
-        {
-            slno: 1,
-            term: 'transactioncount',
-            definition: 'transactioncount A numeric field that stores the number of transactions that have been processed in a specific time period.'
-        },
-        {
-            slno: 2,
-            term: 'operating hours',
-            definition: 'Operating Hours: A measure that indicates the total time an equipment or system has been in operation.'
-        },
-    ]);
+    const [rows, setRows] = useState<data[]>();
 
     const columns = [
         { id: 'slno', label: 'S.No', minWidth: 50 },
@@ -46,8 +35,8 @@ const route = () => {
                 actionIcon={<Plus className="w-4 h-4" />}
             />
             <Box className="p-12">
-                <ReusableTable columns={columns} rows={rows} showFooter={false} menuOptions={["Edit", "Delete", "Archive"]}
-                    handleSelect={(option, row) => console.log(option, row)} />
+                {rows && <ReusableTable columns={columns} rows={rows} showFooter={false} menuOptions={["Edit", "Delete", "Archive"]}
+                    handleSelect={(option, row) => console.log(option, row)} />}
             </Box>
             <CustomDialog
                 open={open}
