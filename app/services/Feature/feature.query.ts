@@ -1,7 +1,7 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { queryFetch } from "../../config/query-client";
 import { ApiError } from "../../utils/interfaceCollection/ClientTypeInterfaces";
-import { FeatureInterface } from "~/utils/interfaceCollection/featureInterface";
+import { EmployeeApiResponse, EmployeeInterface, FeatureInterface } from "~/utils/interfaceCollection/featureInterface";
 
 export function getDetails(options?: Partial<UseQueryOptions<FeatureInterface, ApiError>>) {
     return useQuery<FeatureInterface, ApiError>({
@@ -17,3 +17,16 @@ export function getDetails(options?: Partial<UseQueryOptions<FeatureInterface, A
     });
 }
 
+export function getEmployeeDetails(options?: Partial<UseQueryOptions<EmployeeInterface[], ApiError>>) {
+    return useQuery<EmployeeInterface[], ApiError>({
+        queryKey: ["employee"],
+        queryFn: async () => {
+            const response = await queryFetch<EmployeeApiResponse>({
+                url: '/api/v1/employees',
+                baseURL: import.meta.env.URL_API,
+            });
+            return response.data;
+        },
+        ...options,
+    });
+}

@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import DataTab from "~/components/componentKit/DataTab";
 import DropdownWithTable from "~/components/componentKit/DropdownWithTable";
 import TableWithChart from "~/components/componentKit/TableWithChart";
-import { getDetails } from "~/services/Feature/feature.query";
+import { getDetails, getEmployeeDetails } from "~/services/Feature/feature.query";
 import DataPlatformCard from "~/components/componentKit/DataPlatformCard";
 
 export const meta: MetaFunction = () => ([
@@ -42,9 +42,11 @@ const DataProducts = [
 
 export default function FeaturePage() {
     const { data: devicesResponse, isLoading: devicesLoading, error: devicesError } = getDetails();
+    // const { data: employeeResponse, isLoading: employeeLoading, error: employeeError } = getEmployeeDetails();
     if (devicesLoading) return <Box sx={{ padding: 2 }}>Loading...</Box>;
     if (devicesError) return <Box sx={{ padding: 2 }}>Error loading details.</Box>;
-    const { title } = useParams();
+
+    // console.log(employeeResponse, "employeeResponse");
 
     return (
         <Box sx={{ padding: 2 }}>
