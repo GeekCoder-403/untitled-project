@@ -5,7 +5,7 @@ interface ExampleBody {
     data: any;
 }
 
-export interface BusinessGlossaryItem {
-    term: string;
-    definition: string;
-}
+// export interface BusinessGlossaryItem {
+//     term: string;
+//     definition: string;
+// }

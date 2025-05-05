@@ -4,15 +4,21 @@ export interface FeatureInterface {
     title: string;
     completed: boolean;
 }
-export interface EmployeeApiResponse {
-    status: string;
-    data: EmployeeInterface[];
+export interface Term {
+    _id: string;
+    term: string;
+    description: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
 }
 
-export interface EmployeeInterface {
-    id: number,
-    employee_name: string,
-    employee_salary: number,
-    employee_age: number,
-    profile_image: string
+export interface GetTermsResponse {
+    success: boolean;
+    terms: Term[];
+}
+
+export interface createResponce {
+    term: string;
+    description: string;
 }

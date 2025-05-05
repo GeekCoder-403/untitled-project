@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import DataTab from "~/components/componentKit/DataTab";
 import DropdownWithTable from "~/components/componentKit/DropdownWithTable";
 import TableWithChart from "~/components/componentKit/TableWithChart";
-import { getDetails, getEmployeeDetails } from "~/services/Feature/feature.query";
+import { getDetails } from "~/services/Feature/feature.query";
 import DataPlatformCard from "~/components/componentKit/DataPlatformCard";
 
 export const meta: MetaFunction = () => ([

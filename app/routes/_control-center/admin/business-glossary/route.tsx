@@ -1,14 +1,15 @@
 import { Box } from "@mui/material";
 import { MetaFunction } from "@remix-run/react";
 import { Plus } from "lucide-react";
+import { useSnackbar } from "notistack";
 import { useState } from "react";
 import PageHeader from "~/components/componentKit/PageHeader";
 import CustomDialog from "~/components/elements/Dialog";
 import ReusableTable from "~/components/elements/Table";
 import LabeledTextField from "~/components/elements/TestField";
+import { createGlossary } from "~/services/Feature/feature.mutation";
 
-import glossaryData from "~/data/businessGlossary.json";
-import { BusinessGlossaryItem } from "~/utils/interfaceCollection/ExampleInterface";
+import { getGlossaryDetails } from "~/services/Feature/feature.query";
 
 export const meta: MetaFunction = () => ([
     { title: "Business Glossary" },
@@ -16,16 +17,19 @@ export const meta: MetaFunction = () => ([
 ]);
 
 const route = () => {
+    const { enqueueSnackbar } = useSnackbar();
     const [open, setOpen] = useState(false);
     const [term, setTerm] = useState('');
-    const [definition, setDefinition] = useState('');
+    const [description, setDescription] = useState('');
+    // get api calling
+    const { data: itemResponse, isLoading: itemLoading, error: itemError } = getGlossaryDetails();
 
-    const rows = (glossaryData as BusinessGlossaryItem[]).map((item, index) => ({
+    const rows = (itemResponse ?? []).map((item, index) => ({
         id: index + 1,
         term: item.term,
-        glossary: item.definition,
-        definition: item.definition,
+        glossary: item.description,
     }));
+
 
     const columns = [
         { id: 'id', label: 'S.No', minWidth: 50 },
@@ -33,6 +37,31 @@ const route = () => {
         { id: 'glossary', label: 'Glossary', minWidth: 400 },
         { id: 'action', label: 'Action', minWidth: 100, align: 'center' as const },
     ];
+
+    if (itemLoading) return <Box sx={{ padding: 2, textAlign: 'center', color: 'secondary.main' }}>Loading...</Box>;
+    if (itemError) return <Box sx={{ padding: 2 }}>Error loading details.</Box>;
+
+    // Create API
+    const { mutate } = createGlossary({
+        onSuccess: () => {
+            setOpen(false);
+            setTerm('');
+            setDescription('');
+            enqueueSnackbar('Glossary created successfully', { variant: 'success' });
+        },
+        onError: (error) => {
+            enqueueSnackbar('Error creating glossary', { variant: 'error' });
+        },
+    });
+
+    const handleSubmit = () => {
+        mutate({
+            term,
+            description
+        });
+    };
+
+
 
     return (
         <>
@@ -53,6 +82,7 @@ const route = () => {
                 open={open}
                 onClose={() => setOpen(false)}
                 title="Add Business Glossary"
+                onSubmit={handleSubmit}
             >
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                     <LabeledTextField
@@ -62,15 +92,16 @@ const route = () => {
                         onChange={(e) => setTerm(e.target.value)}
                     />
                     <LabeledTextField
-                        label="Definition"
+                        label="Description"
                         required
                         multiline
                         minRows={3}
-                        value={definition}
-                        onChange={(e) => setDefinition(e.target.value)}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                         autoResize
                     />
                 </Box>
+
             </CustomDialog>
         </>
     )
