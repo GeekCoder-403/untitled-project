@@ -1,0 +1,14 @@
+[
+    {
+        "term": "transactioncount",
+        "definition": "A numeric field that stores the number of transactions that have been processed in a specific time period."
+    },
+    {
+        "term": "operating hours",
+        "definition": "A measure that indicates the total time an equipment or system has been in operation."
+    },
+    {
+        "term": "utilization rate",
+        "definition": "The percentage of available time that equipment is actually in use."
+    }
+]

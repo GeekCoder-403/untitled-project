@@ -1,12 +1,14 @@
-import { Box, TextField, Typography } from "@mui/material";
-import { Link, MetaFunction } from "@remix-run/react";
+import { Box } from "@mui/material";
+import { MetaFunction } from "@remix-run/react";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import PageHeader from "~/components/componentKit/PageHeader";
-import Button from "~/components/elements/Button";
 import CustomDialog from "~/components/elements/Dialog";
-import ReusableTable, { data } from "~/components/elements/Table";
+import ReusableTable from "~/components/elements/Table";
 import LabeledTextField from "~/components/elements/TestField";
+
+import glossaryData from "~/data/businessGlossary.json";
+import { BusinessGlossaryItem } from "~/utils/interfaceCollection/ExampleInterface";
 
 export const meta: MetaFunction = () => ([
     { title: "Business Glossary" },
@@ -18,15 +20,20 @@ const route = () => {
     const [term, setTerm] = useState('');
     const [definition, setDefinition] = useState('');
 
-    // ✅ Make rows a state
-    const [rows, setRows] = useState<data[]>();
+    const rows = (glossaryData as BusinessGlossaryItem[]).map((item, index) => ({
+        id: index + 1,
+        term: item.term,
+        glossary: item.definition,
+        definition: item.definition,
+    }));
 
     const columns = [
-        { id: 'slno', label: 'S.No', minWidth: 50 },
-        { id: 'term', label: 'Term', minWidth: 150 },
-        { id: 'definition', label: 'Definition', minWidth: 300 },
-        { id: 'action', label: 'Action', minWidth: 50, align: 'center' as const },
+        { id: 'id', label: 'S.No', minWidth: 50 },
+        { id: 'term', label: 'Term', minWidth: 200 },
+        { id: 'glossary', label: 'Glossary', minWidth: 400 },
+        { id: 'action', label: 'Action', minWidth: 100, align: 'center' as const },
     ];
+
     return (
         <>
             <PageHeader
@@ -35,8 +42,12 @@ const route = () => {
                 actionIcon={<Plus className="w-4 h-4" />}
             />
             <Box className="p-12">
-                {rows && <ReusableTable columns={columns} rows={rows} showFooter={false} menuOptions={["Edit", "Delete", "Archive"]}
-                    handleSelect={(option, row) => console.log(option, row)} />}
+                <ReusableTable
+                    columns={columns}
+                    rows={rows}
+                    showFooter={false}
+                    menuOptions={["Edit", "Delete", "Archive"]}
+                />
             </Box>
             <CustomDialog
                 open={open}
@@ -65,4 +76,4 @@ const route = () => {
     )
 }
 
-export default route
+export default route;
