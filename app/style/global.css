@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* custom-scroll.css */
+.chat-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #e6fbf7;
+    /* Adjust this color as needed */
+    border-radius: 9999px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-scrollbar::-webkit-scrollbar-button {
+    display: none;
+    /* Hide the up/down buttons */
+}

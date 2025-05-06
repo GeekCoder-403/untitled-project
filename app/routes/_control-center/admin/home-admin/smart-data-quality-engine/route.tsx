@@ -1,4 +1,6 @@
 import { MetaFunction } from "@remix-run/react";
+import ChatPage from "~/components/componentKit/ChatBox";
+import PageHeader from "~/components/componentKit/PageHeader";
 
 export const meta: MetaFunction = () => ([
     { title: "Home | Smart Data Quality Engine" },
@@ -7,7 +9,7 @@ export const meta: MetaFunction = () => ([
 const route = () => {
     return (
         <>
-            <h1 className='text-xl p-4 text-red-400 flex items-center justify-center capitalize'>No item found</h1>
+            <ChatPage />
         </>
     )
 }
