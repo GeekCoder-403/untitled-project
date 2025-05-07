@@ -175,8 +175,8 @@ const route = () => {
         },
     ];
     return (
-        <Box>
-            <Grid2 container spacing={2} sx={{ padding: 2 }}>
+        <Box className="h-full overflow-auto chat-scrollbar">
+            <Grid2 container spacing={2} sx={{ padding: 2 }} >
                 <Grid2 size={{ xs: 12, sm: 12, md: 4 }} className='p-4 bg-white rounded-md shadow-md h-full'>
                     <Typography variant="h6" gutterBottom className='text-tertiary'>
                         Select Source & Target

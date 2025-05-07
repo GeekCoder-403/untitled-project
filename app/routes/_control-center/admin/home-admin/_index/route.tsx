@@ -48,7 +48,7 @@ const cardData = [
 const route = () => {
     return (
         <>
-            <Box sx={{ padding: 2, display: "flex", flexDirection: "column", gap: 2 }}>
+            <Box sx={{ padding: 2, display: "flex", flexDirection: "column", gap: 2 }} >
 
                 <Grid2 container spacing={2}>
                     {cardData.map((card, index) => (

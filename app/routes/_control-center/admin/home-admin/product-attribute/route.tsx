@@ -49,7 +49,7 @@ export default function FeaturePage() {
     // console.log(employeeResponse, "employeeResponse");
 
     return (
-        <Box sx={{ padding: 2 }}>
+        <Box sx={{ padding: 2 }} >
             <Typography variant="h4" className="text-tertiary capitalize pb-2">
                 Product Attribute
             </Typography>
