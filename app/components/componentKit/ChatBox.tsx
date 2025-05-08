@@ -5,9 +5,7 @@ import { useState, useRef, useEffect } from "react";
 
 export default function ChatPage() {
     const { enqueueSnackbar } = useSnackbar();
-    const [messages, setMessages] = useState<
-        { sender: "user" | "bot"; text: string }[]
-    >([]);
+    const [messages, setMessages] = useState<{ sender: "user" | "bot"; text: string }[]>([]);
     const [input, setInput] = useState("");
     const [attachedFiles, setAttachedFiles] = useState<File[]>([]);
     const bottomRef = useRef<HTMLDivElement>(null);
@@ -21,21 +19,23 @@ export default function ChatPage() {
     const handleSend = () => {
         if (!input.trim() && attachedFiles.length === 0) return;
 
-        const imageHtml = attachedFiles
-            .map(
-                (file) =>
-                    `<img src="${URL.createObjectURL(
-                        file
-                    )}" alt="Attached" class="w-32 h-full mt-2 rounded-lg" />`
-            )
+        const fileHtml = attachedFiles
+            .map((file) => {
+                const url = URL.createObjectURL(file);
+                if (file.type.startsWith("image/")) {
+                    return `<img src="${url}" alt="Attached" class="w-32 h-full mt-2 rounded-lg" />`;
+                } else {
+                    return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline mt-2 block">${file.name}</a>`;
+                }
+            })
             .join("");
 
-        const combinedMessage = input + (imageHtml ? " (attached image)" : "");
+        const combinedMessage = input + (fileHtml ? " (attachment below)" : "");
 
         setMessages((prev) => [
             ...prev,
-            { sender: "user" as "user", text: combinedMessage },
-            ...(imageHtml ? [{ sender: "user" as "user", text: imageHtml }] : []),
+            { sender: "user" as const, text: combinedMessage },
+            ...(fileHtml ? [{ sender: "user" as const, text: fileHtml }] : []),
         ]);
 
         const userMessage = input;
@@ -50,12 +50,18 @@ export default function ChatPage() {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files || []);
-        const validFiles = files.filter(
-            (file) => file.type === "image/png" || file.type === "image/jpeg"
-        );
+        const validTypes = [
+            "image/png",
+            "image/jpeg",
+            "image/jpg",
+            "application/pdf",
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        ];
+        const validFiles = files.filter((file) => validTypes.includes(file.type));
 
         if (validFiles.length !== files.length) {
-            enqueueSnackbar("Only PNG and JPG images are supported.", { variant: "error" });
+            enqueueSnackbar("Only PNG, JPG, PDF, and DOC/DOCX files are supported.", { variant: "error" });
         }
 
         setAttachedFiles((prev) => [...prev, ...validFiles]);
@@ -96,16 +102,20 @@ export default function ChatPage() {
                                 <Box className="flex flex-wrap gap-2 bg-gray-100 p-2 rounded-lg">
                                     {attachedFiles.map((file, index) => (
                                         <Box key={index} className="relative">
-                                            <img
-                                                src={URL.createObjectURL(file)}
-                                                alt={`preview-${index}`}
-                                                className="w-16 h-16 object-cover rounded-md"
-                                            />
+                                            {file.type.startsWith("image/") ? (
+                                                <img
+                                                    src={URL.createObjectURL(file)}
+                                                    alt={`preview-${index}`}
+                                                    className="w-16 h-16 object-cover rounded-md"
+                                                />
+                                            ) : (
+                                                <Box className="w-40 p-2 bg-white border rounded-md flex items-center gap-2">
+                                                    <Typography className="text-sm truncate">{file.name}</Typography>
+                                                </Box>
+                                            )}
                                             <button
                                                 onClick={() =>
-                                                    setAttachedFiles((prev) =>
-                                                        prev.filter((_, i) => i !== index)
-                                                    )
+                                                    setAttachedFiles((prev) => prev.filter((_, i) => i !== index))
                                                 }
                                                 className="absolute -top-2 -right-2 text-red-500 bg-white rounded-full p-1 flex items-center justify-center"
                                             >
@@ -125,7 +135,7 @@ export default function ChatPage() {
                                 </label>
                                 <input
                                     type="file"
-                                    accept="image/png, image/jpeg"
+                                    accept=".png, .jpg, .jpeg, .pdf, .doc, .docx"
                                     multiple
                                     onChange={handleFileChange}
                                     className="hidden"
