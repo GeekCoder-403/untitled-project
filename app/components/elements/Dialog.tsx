@@ -38,7 +38,7 @@ const CustomDialog: React.FC<CustomDialogProps> = ({
     title,
     children,
     onSubmit,
-    submitLabel = 'Add',
+    submitLabel = 'Submit',
     cancelLabel = 'Cancel',
     maxWidth = 'sm',
     dividers = true,

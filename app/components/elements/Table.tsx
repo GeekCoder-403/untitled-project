@@ -12,7 +12,7 @@ import {
     Typography
 } from '@mui/material';
 import * as React from 'react';
-import ReusableMenu from './Menu';
+import ReusableMenu, { MenuOption } from './Menu';
 import { useState } from 'react';
 
 interface Column {
@@ -31,7 +31,7 @@ export interface data {
 interface ReusableTableProps {
     columns: Column[];
     rows: data[];
-    menuOptions?: string[];
+    menuOptions?: MenuOption[];
     handleSelect?: (option: string, row: any) => void;
     enableCheckbox?: boolean;
     onRowSelectChange?: (selectedRows: any[]) => void;
@@ -42,7 +42,6 @@ const ReusableTable: React.FC<ReusableTableProps> = ({
     columns,
     rows,
     menuOptions,
-    handleSelect,
     enableCheckbox = false,
     onRowSelectChange,
     showFooter = true // ✅ default true
@@ -89,7 +88,7 @@ const ReusableTable: React.FC<ReusableTableProps> = ({
             borderRadius: '0',
             border: '1px solid #6b7280',
         }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer sx={{ maxHeight: 440 }} className='chat-scrollbar'>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
@@ -172,10 +171,7 @@ const ReusableTable: React.FC<ReusableTableProps> = ({
                                                     }}
                                                 >
                                                     {menuOptions ? (
-                                                        <ReusableMenu
-                                                            options={menuOptions}
-                                                            onSelect={(option) => handleSelect && handleSelect(option, row)}
-                                                        />
+                                                        <ReusableMenu options={menuOptions} row={row} />
                                                     ) : (
                                                         <span style={{ color: '#9ca3af', fontStyle: 'italic' }}>No actions</span>
                                                     )}
@@ -201,7 +197,6 @@ const ReusableTable: React.FC<ReusableTableProps> = ({
                 </Table>
             </TableContainer>
 
-            {/* ✅ Optional footer */}
             {showFooter && (
                 <Box className="flex items-center justify-between px-6 py-4">
                     <Typography className="text-gray-800">

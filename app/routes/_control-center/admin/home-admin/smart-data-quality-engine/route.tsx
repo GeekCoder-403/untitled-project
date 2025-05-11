@@ -1,6 +1,5 @@
 import { MetaFunction } from "@remix-run/react";
 import ChatPage from "~/components/componentKit/ChatBox";
-import PageHeader from "~/components/componentKit/PageHeader";
 
 export const meta: MetaFunction = () => ([
     { title: "Home | Smart Data Quality Engine" },

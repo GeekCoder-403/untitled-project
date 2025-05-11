@@ -1,15 +1,23 @@
+// ReusableMenu.tsx
+
 import * as React from 'react';
-import { IconButton, Menu, MenuItem } from '@mui/material';
+import { IconButton, Menu, MenuItem, ListItemIcon, ListItemText } from '@mui/material';
 import { EllipsisVertical } from 'lucide-react';
 
+export interface MenuOption {
+    label: string;
+    action: (row: any) => void;
+    icon?: React.ReactNode;
+}
+
 interface ReusableMenuProps {
-    options: string[];
-    onSelect: (option: string) => void;
+    options: MenuOption[];
+    row: any;
 }
 
 const ITEM_HEIGHT = 48;
 
-const ReusableMenu: React.FC<ReusableMenuProps> = ({ options, onSelect }) => {
+const ReusableMenu: React.FC<ReusableMenuProps> = ({ options, row }) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -21,19 +29,10 @@ const ReusableMenu: React.FC<ReusableMenuProps> = ({ options, onSelect }) => {
         setAnchorEl(null);
     };
 
-    const handleSelect = (option: string) => {
-        onSelect(option);
-        handleClose();
-    };
-
     return (
         <div>
             <IconButton
                 aria-label="more"
-                id="long-button"
-                aria-controls={open ? 'long-menu' : undefined}
-                aria-expanded={open ? 'true' : undefined}
-                aria-haspopup="true"
                 onClick={handleClick}
                 sx={{
                     padding: 0.1,
@@ -45,13 +44,8 @@ const ReusableMenu: React.FC<ReusableMenuProps> = ({ options, onSelect }) => {
                 <EllipsisVertical />
             </IconButton>
             <Menu
-                id="long-menu"
-                MenuListProps={{
-                    'aria-labelledby': 'long-button',
-                    disablePadding: true,
-                }}
-                anchorEl={anchorEl}
                 open={open}
+                anchorEl={anchorEl}
                 onClose={handleClose}
                 slotProps={{
                     paper: {
@@ -68,24 +62,30 @@ const ReusableMenu: React.FC<ReusableMenuProps> = ({ options, onSelect }) => {
                     },
                 }}
             >
-                {options.map((option) => (
+                {options.map((option, index) => (
                     <MenuItem
-                        key={option}
-                        onClick={() => handleSelect(option)}
+                        key={index}
+                        onClick={() => {
+                            option.action(row);
+                            handleClose();
+                        }}
                         sx={{
-                            color: "#000000",
                             backgroundColor: "#ffffff",
                             '&:hover': {
                                 backgroundColor: "secondary.main",
-                                color: "#000000",
                             },
                         }}
                     >
-                        {option}
+                        <ListItemText
+                            primary={option.label}
+                            primaryTypographyProps={{ color: "#000000" }}
+                        />
                     </MenuItem>
-                ))}
-            </Menu>
-        </div>
+
+                ))
+                }
+            </Menu >
+        </div >
     );
 };
 

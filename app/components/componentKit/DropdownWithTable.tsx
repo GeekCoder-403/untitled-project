@@ -18,17 +18,17 @@ const columns = [
 ];
 
 
-const rows = [
-    { slno: '1', name: 'test', platform: 'Subscription', status: 'pending' },
-    { slno: '2', name: 'One', platform: 'Subscription', status: 'active' },
-    { slno: '3', name: 'Two', platform: 'Subscription', status: 'inactive' },
-    { slno: '4', name: 'Three', platform: 'Subscription', status: 'pending' },
-    { slno: '5', name: 'Four', platform: 'Subscription', status: 'active' },
-    { slno: '6', name: 'Five', platform: 'Subscription', status: 'inactive' },
-    { slno: '7', name: 'Six', platform: 'Subscription', status: 'pending' },
-    { slno: '8', name: 'Seven', platform: 'Subscription', status: 'active' },
-    { slno: '9', name: 'Eight', platform: 'Subscription', status: 'inactive' },
-    { slno: '10', name: 'Nine', platform: 'Subscription', status: 'pending' },
+const row = [
+    { id: 1, slno: '1', name: 'test', platform: 'Subscription', status: 'pending' },
+    { id: 2, slno: '2', name: 'One', platform: 'Subscription', status: 'active' },
+    { id: 3, slno: '3', name: 'Two', platform: 'Subscription', status: 'inactive' },
+    { id: 4, slno: '4', name: 'Three', platform: 'Subscription', status: 'pending' },
+    { id: 5, slno: '5', name: 'Four', platform: 'Subscription', status: 'active' },
+    { id: 6, slno: '6', name: 'Five', platform: 'Subscription', status: 'inactive' },
+    { id: 7, slno: '7', name: 'Six', platform: 'Subscription', status: 'pending' },
+    { id: 8, slno: '8', name: 'Seven', platform: 'Subscription', status: 'active' },
+    { id: 9, slno: '9', name: 'Eight', platform: 'Subscription', status: 'inactive' },
+    { id: 10, slno: '10', name: 'Nine', platform: 'Subscription', status: 'pending' },
 ];
 
 
@@ -52,7 +52,7 @@ const DropdownWithTable = () => {
                 size="small"
             />
             <Box className="w-[50%]">
-                <ReusableTable columns={columns} rows={rows} menuOptions={["Edit", "Delete", "Archive"]}
+                <ReusableTable columns={columns} rows={row} menuOptions={["Edit", "Delete", "Archive"]}
                     handleSelect={(option, row) => console.log(option, row)} />
             </Box>
         </>
