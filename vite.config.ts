@@ -8,7 +8,7 @@ export default defineConfig({
     remix({
       ignoredRouteFiles: ['**/*'],
       routes: async defineRoutes => {
-        return flatRoutes('routes', defineRoutes)
+        return flatRoutes('routes', defineRoutes);
       },
       future: {
         v3_fetcherPersist: true,
@@ -19,14 +19,16 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   define: {
-    // By default, Vite doesn't include shims for NodeJS/
-    // necessary for segment analytics lib to work
     global: {},
   },
   server: {
-    host: true,
-    port: 8080
-  }
-  ,
-  envPrefix: 'URL_'
+    port: 8080,
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8000/',
+        rewrite: (path) => path.replace(/^\/api/, ''), // Removes /api prefix when forwarding
+      },
+    },
+  },
+  envPrefix: 'URL_',
 });
