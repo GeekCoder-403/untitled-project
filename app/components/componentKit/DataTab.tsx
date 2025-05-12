@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
-import CustomTabs, { TabItem } from '../elements/Tabs';
 import { useState, useEffect } from 'react';
-import { format } from 'date-fns'; // simple date formatting
+import { format } from 'date-fns';
+import CustomTabs from '~/components/elements/Tabs';
 
-const tabs: TabItem[] = [
+const tabs = [
     { label: 'ALL TIME', value: 'alltime' },
     { label: 'YEAR', value: 'year' },
     { label: 'MONTH', value: 'month' },
@@ -11,18 +11,17 @@ const tabs: TabItem[] = [
 ];
 
 const DataTab = () => {
-    const [activeTab, setActiveTab] = useState<string | number>('alltime');
     const now = new Date();
 
-    const getFormattedDate = () => {
-        switch (activeTab) {
-            case 'alltime':
+    const getFormattedDate = (label: string) => {
+        switch (label) {
+            case 'ALL TIME':
                 return format(now, 'PPpp');
-            case 'year':
+            case 'YEAR':
                 return format(now, 'yyyy');
-            case 'month':
+            case 'MONTH':
                 return format(now, 'LLLL');
-            case 'week':
+            case 'WEEK':
                 const dayName = format(now, 'EEEE');
                 const startOfYear = new Date(now.getFullYear(), 0, 1);
                 const days = Math.floor((now.getTime() - startOfYear.getTime()) / (24 * 60 * 60 * 1000));
@@ -36,19 +35,15 @@ const DataTab = () => {
 
     return (
         <>
-            <CustomTabs
-                tabs={tabs}
-                value={activeTab}
-                onChange={(_, newValue) => {
-                    if (newValue !== null) {
-                        setActiveTab(newValue);
-                    }
-                }}
-            />
-            <Box className="w-full">
-                <Box className="text-start text-lg font-semibold text-gray-700 p-4">
-                    {getFormattedDate()}
-                </Box>
+            <Box className='text-tertiary'>
+                <CustomTabs
+                    tabs={[
+                        { label: 'ALL TIME', content: <>{getFormattedDate('ALL TIME')}</> },
+                        { label: 'YEAR', content: <>{getFormattedDate('YEAR')}</> },
+                        { label: 'MONTH', content: <>{getFormattedDate('MONTH')}</> },
+                        { label: 'WEEK', content: <>{getFormattedDate('WEEK')}</> },
+                    ]}
+                />
             </Box>
         </>
     );

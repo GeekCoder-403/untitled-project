@@ -1,47 +1,101 @@
-import * as React from 'react';
-import { Tabs, TabsList, Tab } from '@mui/base';
+import React from "react";
+import { Box, Tab, Tabs } from "@mui/material";
 
-export interface TabItem {
-    label: number | string;
-    value: number | string;
+interface TabItem {
+    label: string;
+    content: React.ReactNode;
 }
 
-interface CustomTabsProps {
+interface CustomMuiTabsProps {
     tabs: TabItem[];
-    value: number | string;
-    onChange: (event: React.SyntheticEvent | null, newValue: number | string | null) => void;
     className?: string;
 }
 
-const CustomTabs: React.FC<CustomTabsProps> = ({ tabs, value, onChange, className = '' }) => {
-    return (
-        <Tabs
-            value={value}
-            onChange={onChange}
-            className={`2xl:w-[30%] lg:w-[35%] md:w-[40%] w-full overflow-x-auto border ${className}`}
-        >
-            <TabsList className="flex items-center justify-center content-between min-w-tabs-list">
-                {tabs.map((tab) => (
-                    <Tab
-                        key={tab.value}
-                        value={tab.value}
-                        slotProps={{
-                            root: ({ selected, disabled }) => ({
-                                className: `
-                                    font-sans 
-                                    ${selected ? 'text-white bg-primary' : 'text-[#85bec3] focus:text-white hover:bg-[#85bec3] hover:text-white'} 
-                                    ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'} 
-                                    text-xs text-nowrap font-semibold w-full py-2 px-6 m-0.5 flex justify-center uppercase rounded-sm
-                                `,
-                            }),
-                        }}
-                    >
-                        {tab.label}
-                    </Tab>
-                ))}
-            </TabsList>
-        </Tabs>
-    );
-};
+function CustomMuiTabs({ tabs, className = "" }: CustomMuiTabsProps) {
+    const [value, setValue] = React.useState(0);
 
-export default CustomTabs;
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
+
+    return (
+        <Box className={className}>
+            <Box
+                className="border rounded-sm p-1 max-w-fit"
+                sx={{
+                    overflowX: "auto",
+                    whiteSpace: "nowrap",
+                    scrollbarWidth: "thin",
+                    "&::-webkit-scrollbar": {
+                        height: "6px",
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                        backgroundColor: "#ccc",
+                        borderRadius: "3px",
+                    },
+                }}
+            >
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    aria-label="responsive scrollable tabs"
+                    TabIndicatorProps={{ style: { display: "none" } }}
+                    sx={{
+                        minHeight: 0,
+                        "& .MuiTabs-flexContainer": {
+                            gap: 1,
+                            flexWrap: "nowrap",
+                        },
+                    }}
+                >
+                    {tabs.map((tab, index) => (
+                        <Tab
+                            key={index}
+                            label={tab.label}
+                            disableRipple
+                            sx={{
+                                fontFamily: "sans-serif",
+                                textTransform: "uppercase",
+                                fontWeight: "bold",
+                                fontSize: "0.75rem",
+                                px: 2,
+                                py: 1,
+                                minHeight: 0,
+                                borderRadius: "2px",
+                                color: "#85bec3",
+                                whiteSpace: "nowrap",
+                                "&.Mui-selected": {
+                                    color: "#ffffff",
+                                    backgroundColor: "#85bec3",
+                                },
+                                "&:hover": {
+                                    backgroundColor: "#85bec3",
+                                    color: "#ffffff",
+                                },
+                                "&.Mui-disabled": {
+                                    cursor: "not-allowed",
+                                    color: "#ccc",
+                                },
+                            }}
+                        />
+                    ))}
+                </Tabs>
+            </Box>
+            {tabs.map((tab, index) => (
+                <div
+                    key={index}
+                    role="tabpanel"
+                    hidden={value !== index}
+                    id={`custom-tabpanel-${index}`}
+                    aria-labelledby={`custom-tab-${index}`}
+                >
+                    {value === index && <Box>{tab.content}</Box>}
+                </div>
+            ))}
+        </Box>
+    );
+}
+
+export default CustomMuiTabs;
