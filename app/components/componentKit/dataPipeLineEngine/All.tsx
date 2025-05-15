@@ -65,8 +65,9 @@ const All = () => {
 
     const handleEdit = async (row: Rule) => {
         try {
-            const rule = await getRulesById(row.id);
-            setEditingId(rule.id);
+            const response = await getRulesById(row.id);
+            const rule = response.data;
+            setEditingId(row.id);
             setFormData({
                 ruleType: rule.ruleType,
                 domain: rule.domain,

@@ -17,9 +17,9 @@ export function getAllPipelineDetails(status?: string) {
     });
 }
 
-export async function getRulesById(id: string): Promise<Rule> {
+export async function getRulesById(id: string): Promise<{ success: boolean; data: Rule }> {
     if (!id) throw new Error("Rule ID is required");
-    return await queryFetch<Rule>({
+    return await queryFetch<{ success: boolean; data: Rule }>({
         url: `/api/v1/rules/${id}`,
         baseURL: import.meta.env.URL_API,
     });
