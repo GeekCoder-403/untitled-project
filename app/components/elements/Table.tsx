@@ -24,7 +24,7 @@ interface Column {
 }
 
 export interface data {
-    id: number;
+    id: string;
     [key: string]: any;
 }
 
