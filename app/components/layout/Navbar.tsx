@@ -15,7 +15,7 @@ export default function Navbar() {
             navigate('/');
         } else {
             setName(storedName);
-            navigate('/admin/home-admin');
+            navigate('/admin/analytics');
         }
     }, [navigate]);
 

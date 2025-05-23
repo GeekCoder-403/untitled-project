@@ -54,7 +54,7 @@ const route = () => {
                     {cardData.map((card, index) => (
                         <Grid2 key={index} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
                             <Link
-                                to={`/admin/home-admin/${card.title.toLowerCase().replace(/\s+/g, "-")}`}
+                                to={`/admin/analytics/${card.title.toLowerCase().replace(/\s+/g, "-")}`}
                             >
                                 <FeatureCard
                                     title={card.title}

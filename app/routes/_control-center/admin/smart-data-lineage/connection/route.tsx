@@ -7,7 +7,7 @@ export const meta: MetaFunction = () => ([
 const route = () => {
     return (
         <>
-            <h1 className='text-xl p-4 text-red-400'>Connection</h1>
+            <h1 className='text-xl p-4 text-red-400 flex items-center justify-center capitalize'>No item found</h1>
         </>
     )
 }
