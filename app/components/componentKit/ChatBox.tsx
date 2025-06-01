@@ -74,8 +74,8 @@ export default function ChatPage() {
     };
 
     return (
-        <Box className="flex flex-col items-center justify-center h-[100vh] pt-1">
-            <Box className="w-full max-w-2xl h-full flex flex-col overflow-hidden">
+        <Box className="flex flex-col items-center justify-center h-[84vh] pt-1">
+            <Box className="w-full max-w-2xl flex flex-col overflow-hidden">
                 {hasStartedChat ? (
                     <>
                         <Box className="flex-1 overflow-y-auto p-4 space-y-4 chat-scrollbar">

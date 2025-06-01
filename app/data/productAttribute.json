@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "test",
+        "platform": "Subscription",
+        "description": "Test platform for subscription billing flow."
+    },
+    {
+        "id": 2,
+        "name": "example",
+        "platform": "Marketplace",
+        "description": "Approved entry for marketplace integration."
+    },
+    {
+        "id": 3,
+        "name": "demoApp",
+        "platform": "Subscription",
+        "description": "Demo app rejected due to validation errors."
+    },
+    {
+        "id": 4,
+        "name": "myPlatform",
+        "platform": "API Gateway",
+        "description": "API Gateway integration pending approval."
+    }
+]

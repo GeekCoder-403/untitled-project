@@ -57,7 +57,7 @@ const ReusableMenu: React.FC<ReusableMenuProps> = ({ options, row }) => {
                             maxHeight: ITEM_HEIGHT * 4.5,
                             width: '20ch',
                             boxShadow: 'none',
-                            marginTop: -18,
+                            marginTop: -10,
                         },
                     },
                 }}
