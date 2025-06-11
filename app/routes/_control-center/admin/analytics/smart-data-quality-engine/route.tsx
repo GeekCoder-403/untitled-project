@@ -1,5 +1,5 @@
 import { MetaFunction } from "@remix-run/react";
-import ChatPage from "~/components/componentKit/ChatBox";
+import ChatApp from "~/components/componentKit/ChatApp";
 
 export const meta: MetaFunction = () => ([
     { title: "Home | Smart Data Quality Engine" },
@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => ([
 const route = () => {
     return (
         <>
-            <ChatPage />
+            <ChatApp />
         </>
     )
 }
